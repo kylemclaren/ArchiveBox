@@ -59,9 +59,8 @@ RUN apt-get update -qq \
         fontconfig fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst fonts-symbola fonts-noto fonts-freefont-ttf \
     && ln -s /usr/bin/chromium /usr/bin/chromium-browser \
     && rm -rf /var/lib/apt/lists/*
-ADD ./rga.tar.gz ./rga.tar.gz
-RUN tar -xzf /rga.tar.gz -C /usr/local/bin \
-    && chmod +x /usr/local/bin/rga
+ADD ./rga /usr/bin/local/rga
+RUN chmod +x /usr/local/bin/rga
 
 # Install Node environment
 RUN curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - \
