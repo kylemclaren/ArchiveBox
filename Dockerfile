@@ -81,7 +81,7 @@ RUN npm ci
 
 # Install Python dependencies
 WORKDIR "$CODE_DIR"
-ENV PATH="${PATH}:$VENV_PATH/bin"
+ENV PATH="${VENV_PATH}/bin:${PATH}"
 RUN python -m venv --clear --symlinks "$VENV_PATH" \
     && pip install --upgrade --quiet pip setuptools \
     && mkdir -p "$CODE_DIR/archivebox"
@@ -110,7 +110,7 @@ RUN apt-get update -qq \
 # Install ArchiveBox Python package and its dependencies
 WORKDIR "$CODE_DIR"
 ADD . "$CODE_DIR"
-RUN pip install -e .
+RUN pip install -e . && chmod a+rx -R /app
 
 # Setup ArchiveBox runtime config
 WORKDIR "$DATA_DIR"
