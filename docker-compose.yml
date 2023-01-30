@@ -20,9 +20,9 @@ services:
         environment:
             - ALLOWED_HOSTS=*                   # add any config options you want as env vars
             - MEDIA_MAX_SIZE=750m
-            - SEARCH_BACKEND_ENGINE=sonic     # uncomment these if you enable sonic below
-            - SEARCH_BACKEND_HOST_NAME=sonic
-            - SEARCH_BACKEND_PASSWORD=SecretPassword
+            - SEARCH_BACKEND_ENGINE=ripgrep     # uncomment these if you enable sonic below
+#             - SEARCH_BACKEND_HOST_NAME=sonic
+#             - SEARCH_BACKEND_PASSWORD=SecretPassword
         # dns:                                  # uncomment to use pihole below for ad/tracker blocking during archiving
             # - pihole
         volumes:
@@ -36,15 +36,15 @@ services:
     # curl -O https://raw.githubusercontent.com/ArchiveBox/ArchiveBox/master/etc/sonic.cfg
     # after starting, backfill any existing Snapshots into the index: docker-compose run archivebox update --index-only
 
-    sonic:
-       image: valeriansaliou/sonic:v1.3.1
-       expose:
-           - 1491
-       environment:
-           - SEARCH_BACKEND_PASSWORD=SecretPassword
-       volumes:
-           - ./etc/sonic.cfg:/etc/sonic.cfg:ro
-           - ./data/sonic:/var/lib/sonic/store
+#     sonic:
+#        image: valeriansaliou/sonic:v1.3.1
+#        expose:
+#            - 1491
+#        environment:
+#            - SEARCH_BACKEND_PASSWORD=SecretPassword
+#        volumes:
+#            - ./etc/sonic.cfg:/etc/sonic.cfg:ro
+#            - ./data/sonic:/var/lib/sonic/store
     
     
     ### Example: To run pihole in order to block ad/tracker requests during archiving,
