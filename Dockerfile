@@ -59,7 +59,7 @@ RUN apt-get update -qq \
         fontconfig fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst fonts-symbola fonts-noto fonts-freefont-ttf \
     && ln -s /usr/bin/chromium /usr/bin/chromium-browser \
     && rm -rf /var/lib/apt/lists/*
-ADD ./rga.tar.gz
+ADD ./rga.tar.gz ./rga.tar.gz
 RUN tar -xzf /rga.tar.gz -C /usr/local/bin \
     && chmod +x /usr/local/bin/rga
 
